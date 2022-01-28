@@ -9,6 +9,9 @@ import authRoute from "./routes/auth_route";
 const app = express();
 const port = process.env.PORT || 3000;
 
+// middleware
+app.use(express.json());
+
 // routes
 app.use("/api/v1/jobs", jobsRoute);
 app.use("/api/v1/auth", authRoute);

@@ -44,3 +44,22 @@ export const registerSchema = validator.checkSchema({
     },
   },
 });
+
+export const loginSchema = validator.checkSchema({
+  email: {
+    isString: true,
+    exists: true,
+    isLength: {
+      options: { max: 40 },
+    },
+    isEmail: true,
+  },
+
+  password: {
+    isString: true,
+    exists: true,
+    isLength: {
+      options: { min: 6, max: 30 },
+    },
+  },
+});

@@ -64,4 +64,14 @@ UserSchema.methods.generateToken = function (): tokenizedUserInterface {
   return { user, token };
 };
 
+UserSchema.methods.comparePassword = async function (queryPassword: string): Promise<boolean> {
+  const isMatch = await bcrypt.compare(queryPassword, this.password);
+
+  if (!isMatch) {
+    throw new Error("Invalid password");
+  }
+
+  return isMatch;
+};
+
 export default mongoose.model("User", UserSchema);

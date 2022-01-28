@@ -4,6 +4,7 @@ import express from "express";
 import * as db from "./db";
 import jobsRoute from "./routes/jobs_route";
 import authRoute from "./routes/auth_route";
+import ensureAuthenticate from "./middlewares/authentication";
 
 // constants
 const app = express();
@@ -13,7 +14,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 // routes
-app.use("/api/v1/jobs", jobsRoute);
+app.use("/api/v1/jobs", ensureAuthenticate, jobsRoute);
 app.use("/api/v1/auth", authRoute);
 
 // start server

@@ -12,7 +12,7 @@ export function register(req: Request, res: Response): void {
   
   else {
     User.create(query)
-      .then((user) => res.status(201).json(user))
+      .then((user) => res.status(201).json(user.generateToken()))
       .catch((err) => res.status(500).json(err));
   }
 }
